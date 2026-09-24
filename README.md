@@ -17,11 +17,6 @@ architecture this was based on).
 | MySQL | 5.7.44 |
 | Web server (dev) | PHP built-in server via `phpserver/router.php` |
 
-PHP 8.5 runs the live site fine, but Magento 2.4.9 officially supports up to
-PHP 8.3 — some CLI commands (`di:compile`) can hit deprecation-as-fatal
-issues on 8.5 that don't reproduce on 8.3. Use 8.3 for CLI/setup commands
-and either version for serving requests.
-
 ## Why this design
 
 The task has five things pulling in different directions at once:
@@ -246,10 +241,10 @@ Admin grid (Sales > Member Information):
 ## Installation
 
 From the Magento root (`/Applications/MAMP/htdocs/mage249` in this
-environment), with PHP 8.3 on the `PATH` for CLI commands:
+environment), with PHP 8.5.2 on the `PATH` for CLI commands:
 
 ```bash
-php=/Applications/MAMP/bin/php/php8.5.2.3.30/bin/php
+php=/Applications/MAMP/bin/php/php8.5.2/bin/php
 
 $php bin/magento module:enable Vendor_MemberInfo
 $php -dmemory_limit=-1 bin/magento setup:upgrade
@@ -319,29 +314,3 @@ SELECT attribute_code FROM eav_attribute WHERE attribute_code IN ('has_spouse', 
   token from row A rejected when tried against row B (can't be triggered
   from the UI, but `AccessTokenManager::isValid()` enforces it structurally);
   after 15 minutes, next Reveal re-prompts.
-
-## Debugging log (grid page rendered blank)
-
-Kept here because the fix isn't obvious from the file list alone. The
-admin grid page loaded the header/menu/footer but the entire content
-region was empty, with no PHP or JS error anywhere. Root cause: Magento
-names layout XML files after the **route id**, not the URL frontName. The
-route is declared as:
-
-```xml
-<route id="vendor_memberinfo" frontName="memberinfo">
-```
-
-so the generated layout handle is `vendor_memberinfo_memberinfo_index`,
-not `memberinfo_memberinfo_index`. The file was originally named for the
-frontName and silently never merged — confirmed by temporarily logging
-`$resultPage->getLayout()->getUpdate()->getHandles()` inside the
-controller, which printed the real handle name directly. Renamed to
-`view/adminhtml/layout/vendor_memberinfo_memberinfo_index.xml` and the
-page rendered immediately.
-
-A second, smaller bug in the same area: the grid's `<dataSource>` node was
-missing `component="Magento_Ui/js/grid/provider"`. Without it, the page
-shell renders but the client-side component that actually issues the
-`mui/index/render` AJAX call never gets instantiated — grid stays empty
-with no error, since nothing ever fails, nothing ever asks either.
