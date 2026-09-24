@@ -1,0 +1,21 @@
+{
+    "name": "vendor/module-member-info",
+    "description": "Collects and secures primary/spouse/child member information during checkout.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-quote": "*",
+        "magento/module-sales": "*",
+        "magento/module-checkout": "*",
+        "magento/module-user": "*",
+        "magento/module-backend": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {
+            "Vendor\\MemberInfo\\": ""
+        }
+    }
+}

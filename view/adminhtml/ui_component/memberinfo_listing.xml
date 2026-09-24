@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">memberinfo_listing.memberinfo_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>memberinfo_columns</spinner>
+        <deps>
+            <dep>memberinfo_listing.memberinfo_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="memberinfo_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">order_item_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Vendor_MemberInfo::view</aclResource>
+        <dataProvider class="Vendor\MemberInfo\Ui\Component\Listing\MemberInfoGridDataProvider" name="memberinfo_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>order_item_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="memberinfo_columns">
+        <column name="order_increment_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Order Increment ID</label>
+            </settings>
+        </column>
+        <column name="member_ssn">
+            <settings>
+                <sortable>false</sortable>
+                <filter>false</filter>
+                <label translate="true">Member SSN</label>
+            </settings>
+        </column>
+        <column name="spouse_ssn">
+            <settings>
+                <sortable>false</sortable>
+                <filter>false</filter>
+                <label translate="true">Spouse SSN</label>
+            </settings>
+        </column>
+        <column name="spouse_first_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Spouse First Name</label>
+            </settings>
+        </column>
+        <column name="spouse_last_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Spouse Last Name</label>
+            </settings>
+        </column>
+        <column name="spouse_dob">
+            <settings>
+                <sortable>false</sortable>
+                <filter>false</filter>
+                <label translate="true">Spouse DOB</label>
+            </settings>
+        </column>
+        <column name="child_ssn">
+            <settings>
+                <sortable>false</sortable>
+                <filter>false</filter>
+                <label translate="true">Child SSN</label>
+            </settings>
+        </column>
+        <column name="child_first_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Child First Name</label>
+            </settings>
+        </column>
+        <column name="child_last_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Child Last Name</label>
+            </settings>
+        </column>
+        <column name="child_dob">
+            <settings>
+                <sortable>false</sortable>
+                <filter>false</filter>
+                <label translate="true">Child DOB</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions"
+                       class="Vendor\MemberInfo\Ui\Component\Listing\Column\RevealAction"
+                       component="Vendor_MemberInfo/js/grid/columns/reveal-actions">
+            <settings>
+                <indexField>order_item_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>80</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

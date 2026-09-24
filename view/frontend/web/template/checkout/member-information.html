@@ -1,0 +1,110 @@
+<li id="member-information" class="checkout-member-information" data-bind="fadeVisible: isVisible">
+    <div class="step-title" data-role="title" translate="'Member Information'"></div>
+    <div id="checkout-step-member-information" class="step-content" data-role="content">
+        <form id="member-information-form" data-bind="submit: submitStep">
+            <!-- ko foreach: { data: itemForms, as: 'itemForm' } -->
+            <fieldset class="fieldset member-item-fieldset">
+                <legend class="legend">
+                    <span data-bind="text: productName"></span>
+                </legend>
+
+                <fieldset class="fieldset member-sub-fieldset" data-bind="with: primary">
+                    <legend class="legend"><span translate="'Primary Member'"></span></legend>
+                    <div class="field required">
+                        <label class="label"><span translate="'First Name'"></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text required-entry" data-bind="value: firstName"/>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label class="label"><span translate="'Last Name'"></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text required-entry" data-bind="value: lastName"/>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label class="label"><span translate="'Date of Birth'"></span></label>
+                        <div class="control">
+                            <input type="date" class="input-text required-entry validate-not-future-date" data-bind="value: dob"/>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label class="label"><span translate="'SSN'"></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text required-entry validate-ssn" data-bind="value: ssn" placeholder="123-45-6789"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- ko if: hasSpouse() -->
+                <fieldset class="fieldset member-sub-fieldset" data-bind="with: spouse">
+                    <legend class="legend"><span translate="'Spouse'"></span></legend>
+                    <div class="field required">
+                        <label class="label"><span translate="'First Name'"></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text required-entry" data-bind="value: firstName"/>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label class="label"><span translate="'Last Name'"></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text required-entry" data-bind="value: lastName"/>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label class="label"><span translate="'Date of Birth'"></span></label>
+                        <div class="control">
+                            <input type="date" class="input-text required-entry validate-not-future-date" data-bind="value: dob"/>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label class="label"><span translate="'SSN'"></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text required-entry validate-ssn" data-bind="value: ssn" placeholder="123-45-6789"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <!-- /ko -->
+
+                <!-- ko if: hasChild() -->
+                <fieldset class="fieldset member-sub-fieldset" data-bind="with: child">
+                    <legend class="legend"><span translate="'Child'"></span></legend>
+                    <div class="field required">
+                        <label class="label"><span translate="'First Name'"></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text required-entry" data-bind="value: firstName"/>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label class="label"><span translate="'Last Name'"></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text required-entry" data-bind="value: lastName"/>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label class="label"><span translate="'Date of Birth'"></span></label>
+                        <div class="control">
+                            <input type="date" class="input-text required-entry validate-not-future-date" data-bind="value: dob"/>
+                        </div>
+                    </div>
+                    <div class="field required">
+                        <label class="label"><span translate="'SSN'"></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text required-entry validate-ssn" data-bind="value: ssn" placeholder="123-45-6789"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <!-- /ko -->
+            </fieldset>
+            <!-- /ko -->
+
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="button action continue primary" data-bind="attr: {disabled: isSaving}">
+                        <span translate="'Next'"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</li>

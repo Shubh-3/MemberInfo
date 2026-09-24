@@ -1,0 +1,25 @@
+<?php
+/** @var \Vendor\MemberInfo\Block\Product\View\MemberOptions $block */
+if (!$block->shouldRender()) {
+    return;
+}
+?>
+<div class="member-options" id="member-options">
+    <span class="member-options-title"><?= $block->escapeHtml(__('Additional Members')) ?></span>
+    <?php if ($block->hasSpouseOption()): ?>
+        <div class="field member-option">
+            <label class="label">
+                <input type="checkbox" name="member_options[spouse]" value="1" id="member-option-spouse"/>
+                <span><?= $block->escapeHtml(__('Add Spouse')) ?></span>
+            </label>
+        </div>
+    <?php endif; ?>
+    <?php if ($block->hasChildOption()): ?>
+        <div class="field member-option">
+            <label class="label">
+                <input type="checkbox" name="member_options[child]" value="1" id="member-option-child"/>
+                <span><?= $block->escapeHtml(__('Add Child')) ?></span>
+            </label>
+        </div>
+    <?php endif; ?>
+</div>

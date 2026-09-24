@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Vendor_MemberInfo::memberinfo" title="Member Information" translate="title" sortOrder="60">
+                    <resource id="Vendor_MemberInfo::view" title="View Member Information Grid" translate="title" sortOrder="10"/>
+                    <resource id="Vendor_MemberInfo::reveal_sensitive" title="Reveal Sensitive Member Data" translate="title" sortOrder="20"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

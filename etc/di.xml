@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="vendorMemberInfoPersistMemberOptions"
+                type="Vendor\MemberInfo\Plugin\Quote\PersistMemberOptionsPlugin"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Item\Repository">
+        <plugin name="vendorMemberInfoAddExtensionAttributes"
+                type="Vendor\MemberInfo\Plugin\Quote\AddMemberOptionExtensionAttributesPlugin"/>
+    </type>
+
+    <type name="Magento\Quote\Model\QuoteManagement">
+        <plugin name="vendorMemberInfoValidateBeforeSubmit"
+                type="Vendor\MemberInfo\Plugin\Sales\ValidateMemberInfoBeforeSubmitPlugin"/>
+    </type>
+
+    <preference for="Vendor\MemberInfo\Api\Data\MemberInfoInterface"
+                type="Vendor\MemberInfo\Model\MemberInfo"/>
+    <preference for="Vendor\MemberInfo\Api\MemberInfoManagementInterface"
+                type="Vendor\MemberInfo\Model\MemberInfoManagement"/>
+    <preference for="Vendor\MemberInfo\Api\MemberInfoRepositoryInterface"
+                type="Vendor\MemberInfo\Model\MemberInfoRepository"/>
+    <preference for="Vendor\MemberInfo\Api\GuestMemberInfoManagementInterface"
+                type="Vendor\MemberInfo\Model\GuestMemberInfoManagement"/>
+</config>
